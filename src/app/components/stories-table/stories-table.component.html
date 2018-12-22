@@ -24,7 +24,7 @@
         <td>{{ story.headline.main }}</td> <!-- Title -->
         <td>{{ story.abstract }}</td> <!-- Abstract -->
         <td>{{ story.web_url }}</td> <!-- Full Article Link -->
-        <td>{{ story.pub_date }}</td> <!-- Date -->
+        <td>{{ story.pub_date | date: 'MMM d, y, h:mm:ss a'}}</td> <!-- Date -->
         <td>{{ story.pub_date }}</td> <!-- Fiji Date -->
       </tr>
     </tbody>
