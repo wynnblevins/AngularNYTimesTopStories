@@ -1,0 +1,20 @@
+<table class="times-font">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Abstract</th>
+      <th>Full Article</th>
+      <th>Date</th>
+      <th>Date (Fiji)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let story of stories">
+      <td>{{ story.headline.main }}</td> <!-- Title -->
+      <td>{{ story.abstract }}</td> <!-- Abstract -->
+      <td>{{ story.web_url }}</td> <!-- Full Article Link -->
+      <td>{{ story.pub_date }}</td> <!-- Date -->
+      <td>{{ story.pub_date  }}</td> <!-- Fiji Date -->
+    </tr>
+  </tbody>
+</table>
