@@ -1,10 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { APIKeyService } from './services/apikey.service';
-import { APIDataService } from './services/apidata.service';
+import { APIKeyService } from './services/apikey/apikey.service';
+import { APIDataService } from './services/apidata/apidata.service';
+import { SectionsService } from './services/sections/sections.service';
+
 import { StoriesTableComponent } from './components/stories-table/stories-table.component';
 
 @NgModule({
@@ -14,11 +17,13 @@ import { StoriesTableComponent } from './components/stories-table/stories-table.
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     APIKeyService,
-    APIDataService
+    APIDataService,
+    SectionsService
   ],
   bootstrap: [AppComponent]
 })

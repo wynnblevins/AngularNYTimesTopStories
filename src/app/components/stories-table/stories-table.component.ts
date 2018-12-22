@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { APIDataService } from 'src/app/services/apidata.service';
-import { APIKeyService } from 'src/app/services/apikey.service';
+import { APIDataService } from 'src/app/services/apidata/apidata.service';
+import { APIKeyService } from 'src/app/services/apikey/apikey.service';
 import { HttpParams, HttpClient } from '@angular/common/http';
+import { SectionsService } from 'src/app/services/sections/sections.service';
 
 @Component({
   selector: 'app-stories-table',
@@ -10,22 +11,24 @@ import { HttpParams, HttpClient } from '@angular/common/http';
 })
 export class StoriesTableComponent implements OnInit {
   stories: any[];
-  private apiEndpoint: string = 'https://api.nytimes.com/svc/search/v2/articlesearch.json';
+  sections: string[];
 
-  constructor(private http: HttpClient, 
-    private apiKeyService: APIKeyService) { }
+  constructor(private apiKeyService: APIKeyService, 
+    private sectionsService: SectionsService,
+    private apiDataService: APIDataService) { }
 
   ngOnInit() {
     this.loadData();
+    this.loadSections();
+  }
+
+  loadSections() {
+    this.sections = this.sectionsService.getSections();
   }
 
   loadData() {
-    let apiKey = this.apiKeyService.getAPIKey();
-    let params = new HttpParams()
-      .set("api-key", apiKey);
-    this.http.get(this.apiEndpoint, { params: params })
-      .subscribe((responseObj: any) => {
-       this.stories = responseObj.response.docs;
-    });
+    this.apiDataService.getStories().subscribe((responseObj: any) => {
+      this.stories = responseObj.response.docs;
+    });        
   }
 }
